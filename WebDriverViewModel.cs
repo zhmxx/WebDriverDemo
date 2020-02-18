@@ -14,7 +14,7 @@ namespace WebDriverDemo
     public class WebDriverViewModel : INotifyPropertyChanged
     {
         private ChromeDriver chromeDriver;
-        private string address = string.Empty;
+        private string address = @"localhost:8088";
         public string Address
         {
             get
@@ -28,7 +28,7 @@ namespace WebDriverDemo
             }
         }
 
-        private string script = string.Empty;
+        private string script = @"navigator.userAgent";
         public string Script
         {
             get
@@ -42,9 +42,22 @@ namespace WebDriverDemo
             }
         }
 
+        private bool isAsync = false;
+        public bool IsAsync 
+        { 
+            get
+            {
+                return isAsync;
+            }
+            set
+            {
+                isAsync = value;
+                OnPropertChanged("IsAsync");
+            }
+        }
+
         public RelayCommand AttachCommand { get; set; }
         public RelayCommand EvalCommand { get; set; }
-
 
         public WebDriverViewModel()
         {
@@ -81,8 +94,18 @@ namespace WebDriverDemo
         {
             try
             {
-                object ret = chromeDriver.ExecuteScript(Script);
-                MessageBox.Show(ret as string);
+                if (IsAsync)
+                {
+                    string asyncScript = String.Format(@"var ret = {0}; var callback = arguments[arguments.length-1]; callback(ret);", Script);
+                    object ret = chromeDriver.ExecuteAsyncScript(asyncScript);
+                    MessageBox.Show(ret as string);
+                }
+                else
+                {
+                    string syncScript = String.Format(@"return {0}", Script);
+                    object ret = chromeDriver.ExecuteScript(syncScript);
+                    MessageBox.Show(ret as string);
+                }
             }
             catch (Exception ex)
             {

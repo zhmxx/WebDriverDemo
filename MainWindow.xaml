@@ -23,5 +23,6 @@
         <Button Grid.Row="1" Grid.Column="2" Command="{Binding AttachCommand}" HorizontalAlignment="Left" Width="50" Height="20" >Attach</Button>
         <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Script}" HorizontalAlignment="Right" Width="300" Margin="10"></TextBox>
         <Button Grid.Row="2" Grid.Column="2" Command="{Binding EvalCommand}" HorizontalAlignment="Left" Width="50" Height="20">Execute</Button>
+        <CheckBox x:Name="checkBox" Content="Async" Grid.Column="1" IsChecked="{Binding IsAsync}" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="3" VerticalAlignment="Top"/>
     </Grid>
 </Window>
