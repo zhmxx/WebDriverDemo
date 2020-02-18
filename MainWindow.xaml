@@ -1,0 +1,27 @@
+﻿<Window x:Class="WebDriverDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WebDriverDemo"
+        mc:Ignorable="d"
+        Title="WebDriverDemo" Height="350" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Address}" HorizontalAlignment="Right" Width="300" Margin="10"></TextBox>
+        <Button Grid.Row="1" Grid.Column="2" Command="{Binding AttachCommand}" HorizontalAlignment="Left" Width="50" Height="20" >Attach</Button>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Script}" HorizontalAlignment="Right" Width="300" Margin="10"></TextBox>
+        <Button Grid.Row="2" Grid.Column="2" Command="{Binding EvalCommand}" HorizontalAlignment="Left" Width="50" Height="20">Execute</Button>
+    </Grid>
+</Window>
